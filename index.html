@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DRE Computer Center</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body id="top">
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class="logo">
+      <span class="logo-icon">🖥️</span>
+      <h1>DRE Computer Center</h1>
+    </div>
+
+    <nav id="nav-list">
+      <a href="#home">Home</a>
+      <div class="dropdown">
+        <a href="#" class="dropbtn">Products ▾</a>
+        <div class="dropdown-content">
+          <a href="#computer-setup">Computer Sets</a>
+          <a href="#laptops">Laptops</a>
+          <a href="#accessories">Accessories</a>
+        </div>
+      </div>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="auth-buttons">
+      <a href="#signup" class="signup-btn">Sign Up</a>
+      <a href="#login" class="login-btn">Log In</a>
+
+      <div class="cart-btn" id="cart-button">
+        <img src="https://cdn-icons-png.flaticon.com/512/833/833314.png" alt="Cart">
+        <span id="cart-count">0</span>
+      </div>
+    </div>
+
+    <div class="menu-toggle" id="mobile-menu">☰</div>
+  </header>
+
+
+  <!-- Overlay for modals/cart -->
+  <div id="overlay"></div>
+
+  <!-- Signup Modal -->
+  <div id="signup" class="modal">
+    <div class="modal-content">
+      <h2>Sign Up</h2>
+      <input type="text" placeholder="Username" />
+      <input type="email" placeholder="Email" />
+      <input type="password" placeholder="Password" />
+      <button>Register</button>
+      <a href="#" class="close">Close</a>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div id="login" class="modal">
+    <div class="modal-content">
+      <h2>Log In</h2>
+      <input type="text" placeholder="Username" />
+      <input type="password" placeholder="Password" />
+      <button>Log In</button>
+      <a href="#" class="close">Close</a>
+    </div>
+  </div>
+
+  <!-- Cart Panel -->
+  <div id="cart-panel">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <a href="#" id="close-cart" class="close">✕</a>
+    </div>
+    <div id="cart-items"></div>
+    <div class="cart-footer">
+      <p>Total: ₱<span id="cart-total">0</span></p>
+      <button>Checkout</button>
+    </div>
+  </div>
+
+  <!-- Example Section -->
+  <section id="computer-setup" class="menu">
+    <h2>🖥️ Computer Sets</h2>
+    <div class="products3">
+      <div class="menu-grid3">
+        <div class="product3">
+          <img src="Computer-Setup1.jpg" alt="Athlon 300G">
+          <h3>Athlon 300G</h3>
+          <p class="price">₱13,399</p>
+          <button onclick="addToCart('Athlon 300G', 13399)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
