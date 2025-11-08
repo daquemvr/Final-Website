@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Menu</title>
+  <link rel="stylesheet" href="joel.css">
+</head>
+<body>
+
+  <!--header section-->
+  <header class="navbar">
+    <div class="logo">Jojing’s Biryani</div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+
+    <nav>
+      <ul>
+        <li class="cart" onclick="openCart()">🛒 <span id="cart-count">0</span></li>
+
+        <li><a href="#home">Home</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn">Products</a>
+          <div class="dropdown-content">
+            <a href="#pork-dishes">Pork Dishes</a>
+            <a href="#Beef Dishes">Beef Dishes</a>
+            <a href="#Chicken Dishes">Chicken Dishes</a>
+            <a href="#Seafood Dishes">Seafood Dishes</a>
+            <a href="#Vegetable and Salad Dishes">Vegetable and Salad Dishes</a>
+            <a href="#Soup Dishes">Soup Dishes</a>
+            <a href="#Pasta Dishes">Pasta Dishes</a>
+            <a href="#Noodles Dishes">Noodles Dishes</a>
+            <a href="#Rice Dishes">Rice Dishes</a>
+            <a href="#biryani">Biryani/Kabsa/Bukhari</a>
+            <a href="#Shakes Dishes">Shakes</a>
+            <a href="#Iced Coffee Dishes">Iced Coffee</a>
+            <a href="#Cold Drinks Dishes">Cold Drinks</a>
+            <a href="#Hot Drinks Dishes">Hot Drinks</a>
+            <a href="#Burger And Fries Dishes">Burgers & Fries</a>
+            <a href="#Desserts Dishes">Desserts</a>
+            <a href="#Mukbang Set">Mukbang Set</a>
+            <a href="#Snacks And Appetizers">Snacks & Appetizers</a>
+          </div>
+        </li>
+        <li><a href="#about-us">About us</a></li>
+        <li><a href="#contact-us">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+
+  <!-- Home Section -->
+  <section id="home" class="home-container">
+    <div class="background">
+      <img src="home.jpg" alt="Restaurant background">
+    </div>
+  </section>
+  
+  <!-- Pork Dishes Section -->
+<section id="pork-dishes" class="menu">
+  <h2>Pork Ala Carte</h2>
+
+  <div class="menu-grid">
+
+    <div class="product">
+      <img src="baby2.jpg" alt="Baby Back Ribs">
+      <h3>Baby Back Ribs</h3>
+      <p>₱200</p>
+      <P>
+        <button class="button" onclick="addToCart('Baby Back Ribs', 200)">Add to Cart</button>
+      </P>
+      <p>
+        <button class="buttonb">Buy Now</button>
+      </p>
+    </div>
+
+    <div class="product">
+      <img src="crispy.jpg" alt="Crispy Dinakdakan">
+      <h3>Crispy Dinakdakan</h3>
+      <p>₱499</p>
+      <p>
+        <button class="button" onclick="addToCart('Crispy Dinakdakan', 499)">Add to Cart</button>
+      </p>
+      <p>
+        <button class="buttonb">Buy Now</button>
+      </p>
+    </div>
+
+    <div class="product">
+      <img src="kare.jpg" alt="Crispy Kare Kare">
+      <h3>Crispy Kare Kare</h3>
+      <p>₱420</p>
+      <p>
+        <button class="button" onclick="addToCart('Crispy Kare Kare', 420)">Add to Cart</button>
+      </p>
+      <p>
+        <button class="buttonb">Buy Now</button>
+      </p>
+    </div>
+
+    <div class="product">
+      <img src="dinuguan.jpg" alt="Crispy Dinuguan">
+      <h3>Crispy Dinuguan</h3>
+      <p>₱395</p>
+      <p>
+        <button class="button" onclick="addToCart('Crispy Dinuguan', 395)">Add to Cart</button>
+      </p>
+      <p>
+      <button class="buttonb">Buy Now</button>
+      </p>
+    </div>
+
+    <div class="product">
+      <img src="sisig.jpg" alt="Crispy Dinuguan">
+      <h3>JOjing`s Signature Pork Sisig</h3>
+      <p>₱295</p>
+      <p>
+        <button class="button" onclick="addToCart('JOjing`s Signature Pork Sisig', 295)">Add to Cart</button>
+      </p>
+      <p>
+        <button class="buttonb">Buy Now</button>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+  <!-- Beef Dishes Section -->
+  <section id="Beef Dishes" class="menu">
+    <h2>Beef</h2>
+    <div class="menu-grid">
+      <div class="product">
+        <img src="roast.jpg" alt="Roast Beef">
+        <h3>Roast Beef</h3>
+        <p>₱599</p>
+         <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="pepper.jpg" alt="Pepper Steak Beef">
+        <h3>Pepper Steak Beef</h3>
+        <p>P799</p>
+         <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="curry.jpg" alt="Beef Curry Special">
+        <h3>Beef Curry Special</h3>
+        <p>P499</p>
+         <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Chicken Dishes Section -->
+  <section id="Chicken Dishes" class="menu">
+    <h2>Chicken</h2>
+    <div class="menu-grid">
+      <div class="product">
+        <img src="aromatic.jpg" alt="Roast Beef">
+        <h3> Aromatic Roast Chicken</h3>
+        <p>P499</p>
+         <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="classic.jpg" alt="Pepper Steak Beef">
+        <h3>Classic Fried Chicken</h3>
+        <p>P599</p>
+         <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="buffalo.jpg" alt="Beef Curry Special">
+        <h3>Buffalo Wings Platter</h3>
+        <p>P499</p>
+         <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Saefood Dishes Section -->
+  <section id="Seafood Dishes" class="menu">
+    <h2>Seafood</h2>
+    <div class="menu-grid">
+      <div class="product">
+        <img src="calamares2.jpg" alt="Roast Beef">
+        <h3> Calamares on a Stick</h3>
+        <p>P250</p>
+         <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="adobo.jpg" alt="Pepper Steak Beef">
+        <h3>Adobong Pusit in Olive Oil</h3>
+        <p>P399</p>
+         <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="mixed.jpg" alt="Beef Curry Special">
+        <h3>Mixed Seafood Boil</h3>
+        <p>P579</p>
+         <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Vegetable and Salad Dishes Section -->
+  <section id=" Vegetable and Salad Dishes" class="menu">
+    <h2>Vegetable and Salad</h2>
+    <div class="menu-grid">
+      <div class="product">
+        <img src="chopsuey.jpg" alt="Roast Beef">
+        <h3> Seafood Chopsuey</h3>
+        <p>P320</p>
+         <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="kangkong.jpg" alt="Pepper Steak Beef">
+        <h3>Garlic Oyster Kangkong w/Tofu</h3>
+        <p>P185</p>
+         <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="steamed.jpg" alt="Beef Curry Special">
+        <h3>Steamed Broccolli</h3>
+        <p>P285</p>
+         <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Soup Dishes Section -->
+  <section id=" Soup Dishes" class="menu">
+    <h2>Soup</h2>
+    <div class="menu-grid">
+      <div class="product">
+        <img src="crab.jpg" alt="Roast Beef">
+        <h3> Crab And Corn Soup</h3>
+        <p>P320</p>
+         <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="sinigang.jpg" alt="Pepper Steak Beef">
+        <h3>Sinigang na hipon</h3>
+        <p>P320</p>
+         <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="clams.jpg" alt="Beef Curry Special">
+        <h3>Clams Lauya</h3>
+        <p>Medium-P165 <br>Large-P220</p>
+         <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+<!-- Pasta Dishes Section -->
+  <section id=" Pasta Dishes" class="menu">
+    <h2>Pasta</h2>
+    <div class="menu-grid">
+      <div class="product">
+        <img src="srimp.jpg" alt="Roast Beef">
+        <h3> Shrimp Pesto</h3>
+        <p>P249</p>
+         <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="pasta.jpg" alt="Pepper Steak Beef">
+        <h3>Seafood Pasta</h3>
+        <p>P249</p>
+         <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="tuna.jpg" alt="Beef Curry Special">
+        <h3>Tuna pasta</h3>
+        <p>P199</p>
+         <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+    </div>
+  </section>
+
+    <!-- noodles Dishes Section -->
+    <section id=" Noodles Dishes" class="menu">
+      <h2>Noodles</h2>
+      <div class="menu-grid">
+        <div class="product">
+          <img src="chami.jpg" alt="Roast Beef">
+          <h3>Chami Tamis Anghang</h3>
+          <p>P280</p>
+          <p>
+          <button class="button">Add to Cart</button>
+          <button class="buttonb">Buy Now</button>
+          </p>
+        </div>
+
+
+        <div class="product">
+          <img src="miki.jpg" alt="Pepper Steak Beef">
+          <h3>Miki Bihon</h3>
+          <p>P280</p>
+          <p>
+          <button class="button">Add to Cart</button>
+          <button class="buttonb">Buy Now</button>
+          </p>
+        </div>
+
+
+        <div class="product">
+          <img src="guisado.jpg" alt="Beef Curry Special">
+          <h3>Miki Guisado</h3>
+          <p>P280</p>
+           <p>
+          <button class="button">Add to Cart</button>
+          <button class="buttonb">Buy Now</button>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- rice Dishes Section -->
+    <section id=" Rice Dishes" class="menu">
+      <h2>Rice</h2>
+      <div class="menu-grid">
+        <div class="product">
+          <img src="rice.jpg" alt="Roast Beef">
+          <h3>Biryani Rice</h3>
+          <p>P100</p>
+          <p>
+          <button class="button">Add to Cart</button>
+          <button class="buttonb">Buy Now</button>
+          </p>
+        </div>
+
+
+        <div class="product">
+          <img src="kabsa.jpg" alt="Pepper Steak Beef">
+          <h3>Kabsa Rice</h3>
+          <p>P65</p>
+          <p>
+          <button class="button">Add to Cart</button>
+          <button class="buttonb">Buy Now</button>
+          </p>
+        </div>
+
+
+        <div class="product">
+          <img src="bukhari.jpg" alt="Beef Curry Special">
+          <h3>Bhukari Rice</h3>
+          <p>P100</p>
+          <p>
+          <button class="button">Add to Cart</button>
+          <button class="buttonb">Buy Now</button>
+          </p>
+        </div>
+      </div>
+    </section>
+    
+     <!-- biryani/Kabsa/bukhari Dishes Section -->
+  <section id=" biryani/Kabsa/bukhari Dishes" class="menu">
+    <h2>biryani/Kabsa/bukhari</h2>
+    <div class="menu-grid">
+      <div class="product">
+        <img src="grilled.jpg" alt="Roast Beef">
+        <h3>Roast Chicken or Grilled Chicken Biryani</h3>
+         <p>Solo P249<br>Double P399<br>Family P699</p>
+          <p>
+          <button class="button">Add to Cart</button>
+          <button class="buttonb">Buy Now</button>
+          </p>
+      </div>
+
+
+      <div class="product">
+        <img src="beef.jpg" alt="Pepper Steak Beef">
+        <h3>Roast Beef Biryani</h3>
+        <p>Solo P289<br>P499<br>Family P799</p>
+         <p>
+          <button class="button">Add to Cart</button>
+          <button class="buttonb">Buy Now</button>
+          </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shakes Dishes Section -->
+  <section id="Shakes Dishes" class="menu">
+    <h2>Shakes</h2>
+    <div class="menu-grid">
+      <div class="product">
+        <img src="mais.jpg" alt="Roast Beef">
+        <h3>Mais Con Yelo</h3>
+        <p>P155</p>
+        <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="banana.jpg" alt="Pepper Steak Beef">
+        <h3>Banana Con Yelo</h3>
+        <p>P125</p>
+        <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="fresh.jpg" alt="Beef Curry Special">
+        <h3>Fresh Lemon Shake</h3>
+        <p>P95</p>
+        <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Iced Coffee Dishes Section -->
+  <section id="Iced Coffee Dishes" class="menu">
+    <h2>Iced Coffee</h2>
+    <div class="menu-grid">
+      <div class="product">
+        <img src="late.jpg" alt="Roast Beef">
+        <h3>Spanish Latte</h3>
+        <p>P130</p>
+        <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="cafe.jpg" alt="Pepper Steak Beef">
+        <h3>Cappuccino Latte</h3>
+        <p>P140</p>
+        <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="caramel.jpg" alt="Beef Curry Special">
+        <h3>Caramel Macchiato</h3>
+        <p>P155</p>
+        <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cold Drinks Dishes Section -->
+  <section id="Cold Drinks Dishes" class="menu">
+    <h2>Cold Drinks</h2>
+    <div class="menu-grid">
+      <div class="product">
+        <img src="can.jpg" alt="Roast Beef">
+        <h3>Can Softdrinks</h3>
+        <p>P65</p>
+        <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="mismo.jpg" alt="Pepper Steak Beef">
+        <h3>Mismo Softdrinks</h3>
+        <p>P40</p>
+        <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="litro.jpg" alt="Beef Curry Special">
+        <h3>1.5L Softdrinks</h3>
+        <p>P130</p>
+        <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+    </div>
+  </section>
+
+   <!-- Hot Drinks Dishes Section -->
+  <section id="Hot Drinks Dishes" class="menu">
+    <h2>Hot Drinks</h2>
+    <div class="menu-grid">
+      <div class="product">
+        <img src="ch.jpg" alt="Roast Beef">
+        <h3>Hot Chai Tea</h3>
+        <p>P65</p>
+        <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="ar.jpg" alt="Pepper Steak Beef">
+        <h3>Hot Arabic Coffee</h3>
+        <p>P40</p>
+        <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="cho.jpg" alt="Beef Curry Special">
+        <h3>hot Choco</h3>
+        <p>P55</p>
+        <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+    </div>
+  </section>
+
+   <!-- Burger And Fries Dishes Section -->
+  <section id="Burger And Fries Dishes" class="menu">
+    <h2>Burger And Fries</h2>
+    <div class="menu-grid">
+      <div class="product">
+        <img src="bur.jpg" alt="Roast Beef">
+        <h3>Shocked Burger Jongjing`s Signature</h3>
+        <p> Chicken P185<br>Beef P195</p>
+        <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="fr.jpg" alt="Pepper Steak Beef">
+        <h3>Traditional Fries</h3>
+        <p>Medium P145<br>Large P185</p>
+        <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="fries.jpg" alt="Beef Curry Special">
+        <h3>Jojing`s Fries or Mojos</h3>
+        <p>P130</p>
+        <p>
+        <button class="button">Add to Cart</button>
+        <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+    </div>
+  </section>
+
+ <!-- Desserts Section -->
+  <section id="Desserts Dishes" class="menu">
+    <h2>Desserts</h2>
+    <div class="menu-grid">
+      <div class="product">
+        <img src="vg.jpg" alt="Roast Beef">
+        <h3>Nutella crepes</h3>
+        <p> Chicken P185<br>Beef P195</p>
+        <p>
+          <button class="button">Add to Cart</button>
+          <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="gr.jpg" alt="Pepper Steak Beef">
+        <h3>Nutella Mango crepes</h3>
+        <p>Medium P210<br>Large-P280</p>
+        <p>
+          <button class="button">Add to Cart</button>
+          <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="mg.jpg" alt="Beef Curry Special">
+        <h3>Mango Crepes</h3>
+        <p>P155</p>
+        <p>
+          <button class="button">Add to Cart</button>
+          <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+    </div>
+  </section>
+
+<!-- Mukbang Set Section -->
+  <section id="Mukbang Set" class="menu">
+    <h2>Mukbang Set</h2>
+    <div class="menu-grid">
+      <div class="product">
+        <img src="kf.jpg" alt="Roast Beef">
+        <h3>kofta Kebab Platter</h3>
+        <p> P1095</p>
+        <p>
+          <button class="button">Add to Cart</button>
+          <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="roast.jpg" alt="Pepper Steak Beef">
+        <h3>Roast Chicken</h3>
+        <p>P499</p>
+        <p>
+          <button class="button">Add to Cart</button>
+          <button class="buttonb">Buy Now</button>
+        </p> 
+      </div>
+
+
+      <div class="product">
+        <img src="cp.jpg" alt="Beef Curry Special">
+        <h3>Crispy Pata</h3>
+        <p>P180</p>
+        <p>
+          <button class="button">Add to Cart</button>
+          <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+    </div>
+  </section>
+
+<!-- Snacks And Appetizers Section -->
+  <section id="Snacks And Appetizers" class="menu">
+    <h2>Snacks And Appetizers</h2>
+    <div class="menu-grid">
+      <div class="product">
+        <img src="pp.jpg" alt="Roast Beef">
+        <h3>pani Puri 15 pieces</h3>
+        <p>Plain-P155<br>w/Filling-P265</p>
+        <p>
+          <button class="button">Add to Cart</button>
+          <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="s.jpg" alt="Pepper Steak Beef">
+        <h3>Shawarma</h3>
+        <p>P155</p> 
+        <p>
+          <button class="button">Add to Cart</button>
+          <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+
+
+      <div class="product">
+        <img src="kb.jpg" alt="Beef Curry Special">
+        <h3>Kubos With Masala</h3>
+         <p>Chicken-P165<br>Beef-P195</p>
+        <p>
+          <button class="button">Add to Cart</button>
+          <button class="buttonb">Buy Now</button>
+        </p>
+      </div>
+    </div>
+  </section>
+  <!-- About Section -->
+  <section id="about-us" class="info-section">
+    <h2>About Us</h2>
+    <p>Welcome to our restaurant! We serve delicious home-style Filipino dishes with a modern twist.</p><br>
+    <p>Our mission is to provide a memorable dining experience with quality food and excellent service.</p><br>
+    <p>Visit us for a taste of authentic Filipino cuisine!</p><br>
+    <p>Operating Hours: Monday to Sunday, 10:00 AM - 10:00 PM</p><br>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3872.219609703675!2d121.58820897485971!3d13.945525586466829!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd4d378699add7%3A0x80dbfffc6af2b0a7!2sJoJing&#39;s%20Biryani!5e0!3m2!1sen!2sph!4v1760532683849!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <img src="biryani.jpg" alt="Restaurant Logo" class="restaurant-logo">
+  </section>
+
+
+  <!-- Contact Section -->
+  <section id="contact-us" class="info-section">
+    <h2>Contact Us</h2>
+    <p>Email: jojing`sbiryani@restaurant.com | Phone: (02) 123-4567</p><br>
+    <p>baragay, Purok ilang ilang, Lucena City, 4301 Quezon</p><br>
+    <p>Follow us on social media:
+      <a href="https://www.facebook.com/profile.php?id=61562055322663">Facebook</a> |
+      <a href="https://www.instagram.com/jojings_biryani/">Instagram</a> |
+      <a href="https://twitter.com/JojingsBiryani">Twitter</a>
+    </p>
+
+     <script src="website.js"></script>
+
+  </section>
+
+  <!-- 🛒 Slide-Out Cart Panel -->
+<!-- Cart Panel -->
+<div id="cart-panel" class="cart-panel">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button onclick="closeCart()">✖</button>
+  </div>
+
+  <div id="cart-items" class="cart-items"></div>
+
+  <div class="cart-footer">
+    Total: <span id="cart-total">₱0</span>
+    <button class="checkout-btn">Checkout</button>
+  </div>
+</div>
+
+<div id="overlay" class="overlay" onclick="closeCart()"></div>
+
+
+</body>
+</html>

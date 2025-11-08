@@ -1,0 +1,1332 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DRE Computer Center</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<style>
+  /* === RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  background: #000;
+  overflow-x: hidden;
+}
+
+/* === MOBILE MENU BUTTON === */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  justify-content: space-between;
+}
+
+.bar {
+  height: 3px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+
+
+/* === NAVBAR === */
+.navbar {
+  width: 100%;
+  height: 80px;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  backdrop-filter: blur(50px);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #fff;
+}
+
+.logo-icon {
+  margin-right: 8px;
+}
+
+.highlight {
+  color: #00bfff;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+nav li{
+  font-size: 1.1rem;
+}
+nav ul li {
+  position: relative;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  padding: 8px;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #00bfff;
+}
+
+/* === DROPDOWN === */
+
+.dropdown-content {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);;
+  min-width: 180px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+
+.dropdown-content a {
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: white;
+  display: block;
+  transition: background 0.3s;
+}
+
+.dropdown-content a:hover {
+  background: #b88b4a;
+}
+
+
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content {
+ display: flex;
+}
+
+
+.dropdown-content {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content {
+ opacity: 1;
+ transform: translateY(0);
+  pointer-events: auto;
+}
+
+
+/* --- Auth Buttons --- */
+.auth-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: center;
+  padding: 15px 30px;
+}
+
+.signup-btn, .login-btn {
+  text-decoration: none;
+  color: white;
+  border: 1px solid white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  transition: 0.3s ease;
+}
+
+.signup-btn:hover {
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
+.login-btn:hover {
+  background-color: #2196f3;
+  border-color: #2196f3;
+}
+
+/* --- Cart Button --- */
+.cart-btn img {
+  width: 26px;
+  margin-left: 20px;
+  filter: invert(1);
+  transition: transform 0.3s;
+}
+.cart-btn img:hover {
+  transform: scale(1.1);
+}
+
+/* === Modal Background === */
+.modal {
+  position: fixed;
+  top: 300px; 
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* 👇 Opens the modal when targeted */
+.modal:target {
+  display: flex;
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* === Modal Box === */
+.modal-content {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 40px;
+  border-radius: 20px;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+  transform: translateY(-20px);
+  animation: popup 0.3s ease forwards;
+}
+
+@keyframes popup {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.modal-content input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #bbb;
+  outline: none;
+}
+.modal-content input:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+.modal-content button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.signup-btn-modal { background-color: #4caf50; }
+.signup-btn-modal:hover { background-color: #43a047; }
+.login-btn-modal { background-color: #2196f3; }
+.login-btn-modal:hover { background-color: #1976d2; }
+
+/* --- Close Link --- */
+.close {
+  display: inline-block;
+  margin-top: 15px;
+  color: #555;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+.close:hover {
+  color: #000;
+}
+
+.close {
+  display: inline-block;
+  margin-top: 15px;
+  color: #2196f3;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.close:hover {
+  text-decoration: underline;
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+  .auth-buttons { padding: 10px 20px; }
+  .modal-content { width: 90%; padding: 25px; }
+}
+
+
+/* === HERO SECTION === */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  
+}
+
+.hero-content {
+  padding: 3rem;
+  width: 750px;
+  height: auto;
+  margin-top: 8rem;
+
+}
+
+
+
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.hero-content img {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.hero-content h1 {
+  font-size: 2.8em;
+}
+
+.hero-content p {
+  font-size: 1.8em;
+  color: #ccc;
+}
+
+
+
+/* === Laptops Section Styling === */
+.menu {
+  padding: 60px 20px;
+  background: url(Background2.png);
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.menu h2 {
+  font-size: 2rem;
+  color: cadetblue;
+  margin-bottom: 30px;
+  margin-top: 2rem;
+}
+
+/* Product Grid */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  justify-items: center;
+}
+
+/* Product Card */
+.product1 {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 10px;
+  width: 100%;
+  max-width: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product1:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.product1 img {
+  width: 100%;
+  height: 180px;
+  object-fit:unset;
+  border-radius: 10px;
+}
+
+.product1 h3 {
+  font-size: 1rem;
+  color: #222;
+  min-height: 50px;
+  margin-bottom: 8px;
+}
+
+.product1 .price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 15px;
+}
+
+/* Buttons */
+.buy-btn {
+  display: inline-block;
+  background: #007bff;
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  margin: 5px 4px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.buy-btn:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Secondary button (View Item) */
+.buy-btn:nth-child(5) {
+  background: #28a745;
+}
+
+.buy-btn:nth-child(5):hover {
+  background: #1e7e34;
+}
+
+/* === Responsive Adjustments === */
+@media (max-width: 768px) {
+  .menu {
+    padding: 40px 10px;
+  }
+  .menu h2 {
+    font-size: 1.6rem;
+  }
+  .product1 img {
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+  .product1 {
+    max-width: 100%;
+  }
+}
+
+
+
+/* === COMPUTER SETS SECTION === */
+#computer-setup.menu {
+  padding: 60px 20px;
+  background: url(Background2.png);
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+#computer-setup h2 {
+  font-size: 2rem;
+  color: #222;
+  margin-bottom: 30px;
+}
+
+/* Product Grid Layout */
+.menu-grid3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  justify-items: center;
+}
+
+/* Product Card */
+.product3 {
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  width: 100%;
+  max-width: 270px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product3:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 18px rgba(0,0,0,0.15);
+}
+
+/* Product Image */
+.product3 img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+/* Product Name */
+.product3 h3 {
+  font-size: 1rem;
+  color: #333;
+  min-height: 48px;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+/* Price Tag */
+.product3 .price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 15px;
+}
+
+/* Buttons (shared style) */
+.buy-btn {
+  display: inline-block;
+  background: #007bff;
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  margin: 5px 4px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect */
+.buy-btn:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Second button (Add to Cart) */
+.product3 .buy-btn:last-child {
+  background: #28a745;
+}
+
+.product3 .buy-btn:last-child:hover {
+  background: #1e7e34;
+}
+
+/* === RESPONSIVE STYLING === */
+@media (max-width: 768px) {
+  #computer-setup.menu {
+    padding: 40px 15px;
+  }
+
+  #computer-setup h2 {
+    font-size: 1.6rem;
+  }
+
+  .product3 img {
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-grid3 {
+    grid-template-columns: 1fr;
+  }
+
+  .product3 {
+    max-width: 100%;
+  }
+}
+
+/* =============== ABOUT SECTION =============== */
+.about {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120vh;
+  background-color: #0a0a0a;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  overflow: hidden;
+}
+
+
+.about-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1450px;
+  height: 100vh;
+  gap: 5rem;
+}
+
+
+.about-video {
+  width:  200%;
+  height: 100%;
+  object-fit: cover;
+
+}
+
+
+.about-text {
+  width: 150%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(0, 188, 212, 0.1), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(6px);
+  border-left: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 20px rgba(0, 188, 212, 0.3);
+}
+
+.about-text h1 {
+  font-size: 2.8rem;
+  color: #00bcd4;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+}
+.about-text h2 {
+  font-size: 2.2rem;
+  color: #00bcd4;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  justify-content: center;
+  text-align: center;
+}
+
+.about-text p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+
+.about-text:hover {
+  transform: scale(1.02);
+  transition: transform 0.4s ease;
+}
+
+
+@media (max-width: 780px) {
+
+  .about {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 150vh;
+    background-color: #0a0a0a;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    overflow: hidden;
+  }
+
+  .about-content {
+    flex-direction: column;
+  }
+
+  h2 {
+    font-size: 1.60rem;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .about h1 {
+    display: none;
+  }
+
+  .about-video{
+    width: 100%;
+    height: 300px;
+  }
+
+  .about-text {
+    width: 100%;
+    height: 600px;
+  }
+
+  .about-text {
+    padding: 20px;
+  }
+
+  .about-text h1 {
+    font-size: 1.8rem;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .about-text {
+    max-width: 100%;
+    font-size: 0.95rem;
+    padding: 25px;
+  }
+
+  .about-text h1 {
+    font-size: 1.8rem;
+  }
+}
+
+
+
+
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  nav ul {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.95);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out; /* slide-down animation */
+  }
+
+  .navbar .extra{
+    display: none;
+  }
+
+  nav ul.active {
+    max-height: 500px; /* expands menu smoothly */
+  }
+
+  .menu-toggle {
+    display: flex;
+    
+  }
+
+  /* disable hover dropdowns on mobile */
+  .dropdown:hover .dropdown-content {
+    display: none;
+  }
+
+  /* Accordion-style dropdowns */
+  .dropdown-content {
+    position: static;
+    background: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    flex-direction: column;
+    padding-left: 15px;
+  }
+
+  .dropdown.open .dropdown-content {
+    max-height: 200px; /* expands smoothly */
+  }
+
+  .dropdown-content a {
+    padding: 8px 0;
+  }
+
+  
+
+  .signup-btn {
+    font-size: 10px;
+    display: flex;
+  }
+
+  .login-btn{
+    display: none;
+  }
+
+  .cart-btn {
+    display: flex;
+    right: auto;
+  }
+
+  .hero img{
+    max-height: 200px;
+    width: 200px;
+  }
+
+  .hero h1 {
+    font-size: 2.0rem;
+    font-weight: 500;
+  }
+
+  .hero p{
+    font-size: 1.4rem;
+  }
+}
+
+</style>
+<body id="top">
+
+  <!--Header Section-->
+  <header class="navbar">
+    <div class="logo">
+      <span class="logo-icon">💻</span>
+      <span class="highlight">DRE Computer <span class="extra">Center</span></span>
+    </div>
+
+    <div class="menu-toggle" id="mobile-menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+
+    <nav>
+      <ul id="nav-list">
+        <li><a href="#">Home</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn">Products</a>
+          <div class="dropdown-content">
+            <a href="#laptops">Laptops</a>
+            <a href="#">Computer Sets</a>
+          </div>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn">About</a>
+          <div class="dropdown-content">
+            <a href="#about">About Us</a>
+            <a href="#services">Our Services</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#location">Location</a>
+          </div>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn">Contact</a>
+          <div class="dropdown-content">
+            <a href="#contact">Contact</a>
+            <a href="#visit">Visit Us</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- 🌐 Popup Buttons -->
+    <div class="auth-buttons">
+      <a href="#signup" class="signup-btn">Sign Up</a>
+      <a href="#login" class="login-btn">Log In</a>
+
+      <!-- 🛒 CART ICON -->
+<div class="cart-icon" id="cart-button">
+  <img src="https://cdn-icons-png.flaticon.com/512/833/833314.png" alt="Cart">
+  <span id="cart-count">0</span>
+</div>
+
+<!-- 🛒 CART PANEL -->
+<div id="cart-panel" class="cart-panel">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button id="close-cart">×</button>
+  </div>
+  <div id="cart-items" class="cart-items"></div>
+  <div class="cart-footer">
+    <p>Total: ₱<span id="cart-total">0</span></p>
+    <button id="checkout-btn">Checkout</button>
+  </div>
+</div>
+
+
+   </div>
+
+    <!-- 💚 Sign Up Modal -->
+    <div id="signup" class="modal">
+      <div class="modal-content">
+        <h2>Create Account</h2>
+       <form>
+          <input type="text" placeholder="Full Name" required><br>
+          <input type="email" placeholder="Email" required><br>
+          <input type="password" placeholder="Password" required><br>
+          <button type="submit" class="signup-btn-modal">Sign Up</button>
+          <p>Already have an account? <a href="#login">Log In</a></p>
+       </form>
+       <a href="#" class="close">Close</a>
+     </div>
+   </div>
+
+    <!-- 🔵 Login Modal -->
+    <div id="login" class="modal">
+      <div class="modal-content">
+        <h2>Welcome Back</h2>
+        <form>
+         <input type="email" placeholder="Email" required><br>
+         <input type="password" placeholder="Password" required>
+         <p><a href="#forgot">Forgot Password?</a></p><br>
+         <button type="submit" class="login-btn-modal">Log In</button>
+         <p>Don’t have an account? <a href="#signup">Sign Up</a></p>
+        </form>
+        <a href="#" class="close">Close</a>
+     </div>
+   </div>
+
+    <!-- 🔐 Forgot Password Modal -->
+   <div id="forgot" class="modal">
+      <div class="modal-content">
+        <h2>Reset Password</h2>
+        <form>
+          <input type="email" placeholder="Enter your email" required><br>
+          <button type="submit" class="login-btn-modal">Send Reset Link</button>
+       </form>
+       <a href="#login" class="close">Back to Login</a>
+     </div>
+   </div>
+
+
+  </header>
+
+  <!--Hero Section-->
+  <section id="home" class="hero">
+    <video class="video-background" autoplay muted loop playsinline>
+      <source src="DREComputer.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-content">
+      <img src="dre.jpg" alt="Logo">
+      <h1>DRE Computer Center</h1>
+      <br>
+      <p>We Make IT Easy</p>
+    </div>
+  </section>
+
+
+  <!-- Menu Section -->
+<section id="laptops" class="menu">
+  <h2>💻 Laptops</h2>
+
+  <div class="products1">
+    <div class="menu-grid">
+
+      <div class="product1">
+        <img src="Product1.jpg" alt="LENOVO"> 
+        <h3>LENOVO SLIM IPS3 <br> 14BR8 82XL0071PH</h3>
+        <p class="price">₱45,995</p> 
+        <button class="add-to-cart">Add to Cart</button>
+        <a href="Product1.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product2.jpg" alt="ASUS">
+        <h3>ASUS <br> X1605ZA-MB065WS</h3>
+        <p class="price">₱34,995</p>
+        <a href="#" class="buy-btn">Add to Cart</a>
+        <a href="Product2.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product3.jpg" alt="">
+        <h3>ACER ASPIRE LITE <br> AL14-51M-57H1</h3>
+        <p class="price">₱35,999</p>
+        <a href="#" class="buy-btn">Add to Cart</a>
+        <a href="Product3.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product4.jpg" alt="">
+        <h3>ACER ASPIRE <br> 15 A15-51M56E2</h3>
+        <p class="price">₱39,999</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product4.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product5.jpg" alt="">
+        <h3>LENOVO SLIM IPS3 15ABR8 82XM00FUPH</h3>
+        <p class="price">₱32,995</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product5.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product6.jpg" alt="">
+        <h3>ASUS <br> X1605A-MB095W</h3>
+        <p class="price">₱22,999</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product6.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product7.jpg" alt="">
+        <h3>ASUS  TUF F15 FX5077C4-HN081W</h3>
+        <p class="price">₱54,995</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product7.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product8.jpg" alt="">
+        <h3>ASUS TUF F15 FX506HF-HN308W</h3>
+        <p class="price">₱53,000</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product8.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product9.jpg" alt="">
+        <h3>LENOVO SLIM IPS3 15IRH8 83EM009CPH</h3>
+        <p class="price">₱51,995</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product9.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product10.jpg" alt="">
+        <h3>ASUS  E1404VA-NK 766WSM</h3>
+        <p class="price">₱34,995</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product10.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product11.jpg" alt="">
+        <h3>ACER ASPIRE G 15 AG15-51P-53K1</h3>
+        <p class="price">₱35,999</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product11.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product12.jpg" alt="">
+        <h3>ASUS <br> E1404GA-NK350WSM</h3>
+        <p class="price">₱22,999</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product12.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product13.jpg" alt="">
+        <h3>ACER ASPIRE LITE 14 AL14-32P-392P</h3>
+        <p class="price">₱26,999</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product13.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product14.jpg" alt="">
+        <h3>ACER ASPIRE LITE 14 AL14-32P-C5PN</h3>
+        <p class="price">₱23,999</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product14.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product15.jpg" alt="">
+        <h3> NINGMEI CLR201 SLIM LAPTOP</h3>
+        <p class="price">₱13,999</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product15.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product16.jpg" alt="">
+        <h3>NINGMEI CLR201 SLIM LAPTOP</h3>
+        <p class="price">₱14,999</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product16.html" class="buy-btn">View Item</a>
+     </div>
+
+     <div class="product1">
+        <img src="Product17.jpg" alt="">  
+        <h3>TOSHIBA DYNABOOK R73</h3>  
+        <p class="price">₱13,499</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product17.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product18.jpg" alt="">
+        <h3>DELL LATITUDE 3560</h3>
+        <p class="price">₱8,795</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product18.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product19.jpg" alt="">
+        <h3>DELL LATITUDE 7390</h3>
+        <p class="price">₱14,999</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product19.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product20.jpg" alt="">
+        <h3>DELL VOSTRO 15 3568</h3>
+        <p class="price">₱10,499</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product20.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product21.jpg" alt="">
+        <h3>DELL VOSTRO 15 3568</h3>
+        <p class="price">₱11,299</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product21.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product22.jpg" alt="">
+        <h3> HP PROBOOK 450 G3</h3>
+        <p class="price">₱13,499</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product22.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product23.jpg" alt="">
+        <h3>LENOVO THINKPAD E570</h3>
+        <p class="price">₱9,495</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product23.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product24.jpg" alt="">
+        <h3>LENOVO THINKPAD L570</h3>
+        <p class="price">₱8,995</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product24.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product25.jpg" alt="">
+        <h3>LENOVO THINKPAD L570 </h3>
+        <p class="price">₱9,995</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product25.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product26.jpg" alt="">
+        <h3>TOSHIBA DYNABOOK B35</h3>
+        <p class="price">₱7,990</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product26.html" class="buy-btn">View Item</a>
+     </div>
+
+     <div class="product1">
+        <img src="Product27.jpg" alt="">
+        <h3> TOSHIBA DYNABOOK B65</h3>
+        <p class="price">₱11,699</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product27.html" class="buy-btn">View Item</a>
+     </div>
+     <div class="product1">
+        <img src="Product28.jpg" alt="">
+        <h3>TOSHIBA DYNABOOK B65</h3>
+        <p class="price">₱10,499</p>
+        <a href="#" class="buy-btn">Buy Now</a>
+        <a href="Product28.html" class="buy-btn">View Item</a>
+     </div>
+
+
+    </div>
+  </div>
+</section>          
+
+<!-- About Section -->
+
+<section id="about" class="about">
+ 
+  <div class="about-content">
+    <video class="about-video" autoplay muted loop playsinline>
+      <source src="Logo.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="about-text">
+      <h1> DRE </h1>
+      <h2>Computer Center</h2>
+      <p>
+        Dre Computer Center is your go-to destination for all things tech. Established in 2012 ,
+        we have been committed to providing top-notch computer products and services to our community.
+        Our mission is to make technology accessible and affordable for everyone.
+      </p>
+
+      <p>
+        At Dre Computer Center, we pride ourselves on our extensive selection of laptops, desktops,
+        accessories, and peripherals from leading brands. Our knowledgeable staff is always ready to assist you
+        in finding the perfect device to suit your needs and budget.
+      </p>
+
+      <p>
+        Whether you're a student, professional, or tech enthusiast, we have something for you.
+        From the latest laptops and accessories to expert repair services,
+        Dre Computer Center is here to help you stay connected and productive.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<script src="dre.js"></script>
+
+  <!-- Script for Mobile Accordion Menu -->
+ <script>
+    const menuToggle = document.getElementById("mobile-menu");
+    const navList = document.getElementById("nav-list");
+    const dropdowns = document.querySelectorAll(".dropdown");
+
+    // Hamburger toggle
+    menuToggle.addEventListener("click", () => {
+    navList.classList.toggle("active");
+    menuToggle.classList.toggle("open");
+    });
+
+    // Accordion dropdowns for mobile
+    dropdowns.forEach(dropdown => {
+      const btn = dropdown.querySelector(".dropbtn");
+        btn.addEventListener("click", (e) => {
+          if (window.innerWidth <= 768) {
+          const isOpen = dropdown.classList.contains("open");
+        
+          // Close other open dropdowns (optional)
+          document.querySelectorAll(".dropdown.open").forEach(d => d.classList.remove("open"));
+        
+         // Toggle the clicked one
+         if (!isOpen) {
+            e.preventDefault(); // only block navigation when toggling accordion
+            dropdown.classList.add("open");
+          }
+        }
+     });
+   });
+
+  
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+const cartButton = document.getElementById("cart-button");
+const cartPanel = document.getElementById("cart-panel");
+const closeCart = document.getElementById("close-cart");
+const cartCount = document.getElementById("cart-count");
+const cartItemsContainer = document.getElementById("cart-items");
+const cartTotal = document.getElementById("cart-total");
+const checkoutBtn = document.getElementById("checkout-btn");
+
+// Open / Close Cart
+cartButton.addEventListener("click", () => cartPanel.classList.add("active"));
+closeCart.addEventListener("click", () => cartPanel.classList.remove("active"));
+
+// Add to Cart
+document.querySelectorAll(".add-to-cart").forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    const product = e.target.closest(".product3, .product2, .product"); // adjust selectors to your product cards
+    const name = product.querySelector("h3").innerText;
+    const price = parseFloat(product.querySelector(".price").innerText.replace("₱", "").replace(",", ""));
+    const image = product.querySelector("img").src;
+
+    const existing = cart.find(item => item.name === name);
+    if (existing) existing.qty++;
+    else cart.push({ name, price, image, qty: 1 });
+
+    saveCart();
+    updateCartUI();
+  });
+});
+
+// Update Cart UI
+function updateCartUI() {
+  cartItemsContainer.innerHTML = "";
+
+  if (cart.length === 0) {
+    cartItemsContainer.innerHTML = `<p class="empty-cart">Your cart is empty.</p>`;
+    cartTotal.innerText = "0";
+    cartCount.innerText = "0";
+    return;
+  }
+
+  let total = 0;
+  cart.forEach((item, index) => {
+    total += item.price * item.qty;
+
+    const div = document.createElement("div");
+    div.classList.add("cart-item");
+    div.innerHTML = `
+      <img src="${item.image}" alt="${item.name}">
+      <div>
+        <h4>${item.name}</h4>
+        <p>₱${item.price.toLocaleString()}</p>
+      </div>
+      <div class="controls">
+        <button class="decrease">-</button>
+        <span>${item.qty}</span>
+        <button class="increase">+</button>
+        <button class="remove">×</button>
+      </div>
+    `;
+
+    div.querySelector(".increase").addEventListener("click", () => {
+      item.qty++;
+      saveCart(); updateCartUI();
+    });
+    div.querySelector(".decrease").addEventListener("click", () => {
+      if (item.qty > 1) item.qty--;
+      else cart.splice(index, 1);
+      saveCart(); updateCartUI();
+    });
+    div.querySelector(".remove").addEventListener("click", () => {
+      cart.splice(index, 1);
+      saveCart(); updateCartUI();
+    });
+
+    cartItemsContainer.appendChild(div);
+  });
+
+  cartTotal.innerText = total.toLocaleString();
+  cartCount.innerText = cart.reduce((sum, i) => sum + i.qty, 0);
+}
+
+function saveCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+checkoutBtn.addEventListener("click", () => {
+  if (cart.length === 0) return alert("Your cart is empty!");
+  if (confirm("Proceed to checkout?")) {
+    cart = [];
+    saveCart();
+    updateCartUI();
+    alert("Checkout successful!");
+  }
+});
+
+updateCartUI();
+
+
+  </script>
+
+
+  <!-- 🛒 CART SIDE PANEL -->
+<div id="cart-panel" class="cart-panel">
+  <div class="cart-header">
+    <h2>🛒 My Cart</h2>
+    <button id="close-cart" class="close-cart">&times;</button>
+  </div>
+  <div id="cart-items" class="cart-items"></div>
+  <div class="cart-footer">
+    <p>Total: ₱<span id="cart-total">0</span></p>
+    <button id="checkout-btn" class="checkout-btn">Checkout</button>
+  </div>
+</div>
+
+<!-- Semi-transparent backdrop -->
+<div id="cart-overlay" class="cart-overlay"></div>
+
+<!-- Add this at the very end -->
+<script src="cart.js"></script>
+
+</body>
+</html>

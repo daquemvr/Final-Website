@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DRE Computer Center</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --accent: #38bdf8;
+      --muted: #94a3b8;
+      --glass: rgba(255,255,255,0.04);
+      --transition: all 0.3s ease;
+      --max-width: 1280px;
+    }
+
+    /* Reset-ish */
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: #e6eef8;
+      background: linear-gradient(180deg,#071022 0%, #071827 100%);
+      line-height: 1.45;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 14px 20px;
+      position: relative;
+      z-index: 30;
+      max-width: var(--max-width);
+      margin: 16px auto;
+    }
+
+    .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .logo-icon { font-size: 1.6rem; }
+    .highlight { color: #fff; font-size: 1.05rem; }
+    .extra { font-weight: 400; color: var(--muted); }
+
+    /* Nav list */
+    nav { flex: 1; }
+    .nav-list {
+      list-style: none;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      margin: 0; padding: 0;
+    }
+    .nav-list a, .dropbtn {
+      color: #dbeafe;
+      background: none;
+      border: 0;
+      padding: 8px 12px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: var(--transition);
+    }
+    .nav-list a:hover, .dropbtn:hover { background: var(--glass); }
+
+    /* Dropdown */
+    .dropdown { position: relative; }
+    .dropdown-content {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      min-width: 180px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(2,6,23,0.6);
+      padding: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-6px) scale(0.98);
+      transition: var(--transition);
+    }
+    .dropdown:hover .dropdown-content {
+      opacity: 1; pointer-events: auto; transform: translateY(0) scale(1);
+    }
+    .dropdown-content a {
+      display: block;
+      padding: 8px 10px;
+      border-radius: 8px;
+      color: #cfe8ff;
+      text-decoration: none;
+      font-size: .9rem;
+    }
+    .dropdown-content a:hover { background: rgba(255,255,255,0.04); }
+
+    /* Buttons */
+    .auth-buttons { display: flex; gap: 10px; align-items: center; }
+    .btn {
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 0;
+      cursor: pointer;
+      font-weight: 600;
+      background: var(--accent);
+      color: white;
+      transition: var(--transition);
+    }
+    .btn:hover { filter: brightness(1.1); }
+    .btn.ghost, .btn.outline {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #dbeafe;
+    }
+    .btn.block { display: block; width: 100%; }
+
+    .cart-btn {
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      position: relative;
+      color: #dbeafe;
+      font-size: 1.2rem;
+    }
+    #cart-count {
+      position: absolute;
+      top: -6px;
+      right: -10px;
+      background: var(--accent);
+      color: #071022;
+      padding: 2px 6px;
+      border-radius: 999px;
+      font-size: .75rem;
+      font-weight: 700;
+    }
+
+    /* Mobile menu */
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      flex-direction: column;
+    }
+    .bar {
+      width: 22px; height: 2px;
+      background: #dbeafe;
+      margin: 4px 0;
+      transition: var(--transition);
+    }
+
+
+    /* Sections & product grid */
+section{max-width:var(--max-width);margin:18px auto;padding:18px;border-radius:12px}
+.menu h2{margin:0 0 12px}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.product1{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,0.55)}
+.product1 img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+.product1 h3{font-size:1rem;margin:10px 0 6px}
+.price{color: #a7f3d0;font-weight:700;margin-bottom:8px}
+.buy-btn{text-decoration:none;padding:8px 10px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:#dbeafe;margin-left:8px}
+
+    /* Hero */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 16px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+    .video-background {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.35;
+    }
+    .hero-content { position: relative; text-align: center; z-index: 1; }
+    .hero-logo { width: 80px; border-radius: 8px; margin-bottom: 8px; }
+
+    /* Modal & Overlay */
+    .overlay {
+      position: fixed; inset: 0;
+      background: rgba(2,6,23,0.6);
+      backdrop-filter: blur(3px);
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+      z-index: 45;
+    }
+    .overlay.show { opacity: 1; pointer-events: auto; }
+
+    .modal {
+      position: fixed; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: var(--transition);
+      z-index: 50;
+    }
+    .modal.show { opacity: 1; pointer-events: auto; }
+    .modal-content {
+      background: linear-gradient(180deg,#071427,#071a2b);
+      border-radius: 12px;
+      padding: 20px;
+      width: 100%; max-width: 400px;
+      transform: translateY(20px);
+      transition: var(--transition);
+      position: relative;
+    }
+    .modal.show .modal-content { transform: translateY(0); }
+    .modal-close {
+      position: absolute; top: 10px; right: 14px;
+      background: none; border: 0; color: #cbd5e1; font-size: 1.4rem; cursor: pointer;
+    }
+
+    /* Cart Panel */
+    .cart-panel {
+      position: fixed;
+      right: 0; top: 0;
+      height: 100vh; width: 360px;
+      background: linear-gradient(180deg,#071427,#081327);
+      box-shadow: -6px 0 20px rgba(0,0,0,0.6);
+      border-left: 1px solid rgba(255,255,255,0.05);
+      transform: translateX(100%);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      z-index: 60;
+      display: flex; flex-direction: column;
+      opacity: 0;
+    }
+    .cart-panel.open { transform: translateX(0); opacity: 1; }
+
+    .cart-header, .cart-footer {
+      padding: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .cart-items {
+      flex: 1; overflow-y: auto; padding: 14px;
+    }
+    .cart-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px; margin-bottom: 8px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+    }
+    .remove-btn {
+      background: none; border: 0; color: var(--muted); cursor: pointer;
+    }
+
+    /* Responsive */
+    @media (max-width: 880px) {
+      .nav-list { display: none; flex-direction: column; }
+      .menu-toggle { display: flex; }
+      .nav-list.mobile-open {
+        display: flex;
+        position: absolute; top: 64px; left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        background: linear-gradient(180deg,#08101a,#060c14);
+        border-radius: 10px;
+        padding: 12px;
+        box-shadow: 0 12px 30px rgba(2,6,23,0.6);
+      }
+      .dropdown-content { position: static; opacity: 1; pointer-events: auto; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="navbar">
+    <div class="logo">
+      <span class="logo-icon">💻</span>
+      <span class="highlight">DRE Computer <span class="extra">Center</span></span>
+    </div>
+
+    <button class="menu-toggle" id="mobile-menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <nav>
+      <ul id="nav-list" class="nav-list">
+        <li><a href="#home">Home</a></li>
+        <li class="dropdown">
+          <button class="dropbtn">Products ▾</button>
+          <div class="dropdown-content">
+            <a href="#laptops">Laptops</a>
+            <a href="#computer-sets">Computer Sets</a>
+          </div>
+        </li>
+        <li class="dropdown">
+          <button class="dropbtn">About ▾</button>
+          <div class="dropdown-content">
+            <a href="#about">About Us</a>
+            <a href="#services">Our Services</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#location">Location</a>
+          </div>
+        </li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="auth-buttons">
+      <button class="btn ghost" data-modal-target="#signup">Sign Up</button>
+      <button class="btn" data-modal-target="#login">Log In</button>
+      <button id="cart-open-btn" class="cart-btn" aria-label="Open cart">🛒 <span id="cart-count">0</span></button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <video class="video-background" autoplay muted loop playsinline>
+      <source src="DREComputer.mp4" type="video/mp4">
+    </video>
+    <div class="hero-content">
+      <img src="dre.jpg" alt="Logo" class="hero-logo">
+      <h1>DRE Computer Center</h1>
+      <p>We Make IT Easy</p>
+    </div>
+  </section>
+
+  <!-- Cart Panel -->
+  <aside id="cart-panel" class="cart-panel">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button class="remove-btn" id="close-cart">✖</button>
+    </div>
+    <div id="cart-items" class="cart-items">
+      <p class="empty">Your cart is empty.</p>
+    </div>
+    <div class="cart-footer">
+      <p>Total: <strong id="cart-total">₱0</strong></p>
+      <button class="btn block" id="checkout-btn">Checkout</button>
+    </div>
+  </aside>
+
+
+  <!-- Menu Section -->
+  <section id="laptops" class="menu">
+    <h2>💻 Laptops</h2>
+
+    <div class="products1">
+      <div class="menu-grid">
+        <div class="product1">
+          <img src="Product1.jpg" alt="LENOVO">
+          <h3>LENOVO SLIM IPS3 <br> 14BR8 82XL0071PH</h3>
+          <p class="price">₱45,995</p>
+          <button class="btn outline" onclick="addToCart('LENOVO SLIM IPS3 14BR8 82XL0071PH', 45995)">Add to Cart</button>
+          <a href="Product1.html" class="buy-btn">View Item</a>
+        </div>
+
+        <div class="product1">
+          <img src="Product2.jpg" alt="LENOVO">
+          <h3>ASUS <br> X1605ZA-MB065WS</h3>
+          <p class="price">₱34,995</p>
+          <button class="btn outline" onclick="addToCart('LENOVO SLIM IPS3 14BR8 82XL0071PH', 45995)">Add to Cart</button>
+          <a href="Product1.html" class="buy-btn">View Item</a>
+        </div>
+
+        <div class="product1">
+          <img src="Product3.jpg" alt="LENOVO">
+          <h3>ACER ASPIRE LITE <br> AL14-51M-57H1</h3>
+          <p class="price">₱35,999</p>
+          <button class="btn outline" onclick="addToCart('LENOVO SLIM IPS3 14BR8 82XL0071PH', 45995)">Add to Cart</button>
+          <a href="Product1.html" class="buy-btn">View Item</a>
+        </div>
+
+        <div class="product1">
+          <img src="Product4.jpg" alt="LENOVO">
+          <h3>ACER ASPIRE <br> 15 A15-51M56E2</h3>
+          <p class="price">₱39,999</p>>
+          <button class="btn outline" onclick="addToCart('LENOVO SLIM IPS3 14BR8 82XL0071PH', 45995)">Add to Cart</button>
+          <a href="Product1.html" class="buy-btn">View Item</a>
+        </div>
+
+        <div class="product1">
+          <img src="Product5.jpg" alt="LENOVO">
+          <h3>LENOVO SLIM IPS3 <br> 14BR8 82XL0071PH</h3>
+          <p class="price">₱45,995</p>
+          <button class="btn outline" onclick="addToCart('LENOVO SLIM IPS3 14BR8 82XL0071PH', 45995)">Add to Cart</button>
+          <a href="Product1.html" class="buy-btn">View Item</a>
+        </div>
+
+        <div class="product1">
+          <img src="Product6.jpg" alt="LENOVO">
+          <h3>LENOVO SLIM IPS3 <br> 14BR8 82XL0071PH</h3>
+          <p class="price">₱45,995</p>
+          <button class="btn outline" onclick="addToCart('LENOVO SLIM IPS3 14BR8 82XL0071PH', 45995)">Add to Cart</button>
+          <a href="Product1.html" class="buy-btn">View Item</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <div id="overlay" class="overlay"></div>
+
+  <script>
+    // 🧭 Mobile Nav
+    const menuBtn = document.getElementById('mobile-menu');
+    const navList = document.getElementById('nav-list');
+    menuBtn.addEventListener('click', () => {
+      navList.classList.toggle('mobile-open');
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', !expanded);
+    });
+
+    // 🛒 Cart System
+    let cart = [];
+    const cartCount = document.getElementById("cart-count");
+    const cartItemsContainer = document.getElementById("cart-items");
+    const cartTotal = document.getElementById("cart-total");
+    const cartPanel = document.getElementById("cart-panel");
+    const overlay = document.getElementById("overlay");
+    const openCartBtn = document.getElementById("cart-open-btn");
+    const closeCartBtn = document.getElementById("close-cart");
+
+    function addToCart(name, price) {
+      const numericPrice = parseFloat(price.toString().replace(/,/g, ""));
+      const existingItem = cart.find(i => i.name === name);
+      existingItem ? existingItem.quantity++ : cart.push({ name, price: numericPrice, quantity: 1 });
+      updateCart(); openCart();
+    }
+
+    function updateCart() {
+      cartItemsContainer.innerHTML = "";
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = "<p class='empty'>Your cart is empty.</p>";
+        cartTotal.textContent = "₱0";
+        cartCount.textContent = 0;
+        return;
+      }
+      let total = 0;
+      cart.forEach((item, i) => {
+        total += item.price * item.quantity;
+        const div = document.createElement("div");
+        div.classList.add("cart-item");
+        div.innerHTML = `
+          <span>${item.name}</span>
+          <span>₱${(item.price * item.quantity).toLocaleString()}</span>
+          <button class="remove-btn" onclick="removeItem(${i})">❌</button>`;
+        cartItemsContainer.appendChild(div);
+      });
+      cartTotal.textContent = "₱" + total.toLocaleString();
+      cartCount.textContent = cart.reduce((s, i) => s + i.quantity, 0);
+    }
+
+    function removeItem(i) { cart.splice(i, 1); updateCart(); }
+    function openCart() { cartPanel.classList.add("open"); overlay.classList.add("show"); }
+    function closeCart() { cartPanel.classList.remove("open"); overlay.classList.remove("show"); }
+
+    openCartBtn.addEventListener("click", openCart);
+    closeCartBtn.addEventListener("click", closeCart);
+    overlay.addEventListener("click", () => { closeCart(); document.querySelectorAll('.modal.show').forEach(m=>m.classList.remove('show')); });
+
+    // 💬 Modal System
+    const modalTriggers = document.querySelectorAll("[data-modal-target]");
+    const modals = document.querySelectorAll(".modal");
+    modalTriggers.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = document.querySelector(btn.dataset.modalTarget);
+        modals.forEach(m => m.classList.remove("show"));
+        target.classList.add("show");
+        overlay.classList.add("show");
+      });
+    });
+    document.querySelectorAll("[data-close]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        btn.closest(".modal").classList.remove("show");
+        overlay.classList.remove("show");
+      });
+    });
+  </script>
+</body>
+</html>

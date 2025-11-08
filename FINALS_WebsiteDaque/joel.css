@@ -1,0 +1,825 @@
+/* 🌐 Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #fffaf3;
+  color: #333;
+  line-height: 1.6;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgb(245, 205, 76);
+  padding: 1rem 3rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1e2a38;
+  text-decoration: none;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+nav ul li {
+  position: relative;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #1e2a38;
+  font-weight: 500;
+  transition: color 0.3s;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+nav ul li a:hover {
+  color: #1a73e8;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  color: fff;
+  padding: 10px 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: orange;
+  min-width: 220px;
+  max-height: 200px; /* 👈 limits dropdown height */
+  overflow-y: auto; /* 👈 enables vertical scrolling */
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Optional: Style the scrollbar (for Chrome, Edge, Safari) */
+.dropdown-content::-webkit-scrollbar {
+  width: 8px;
+}
+.dropdown-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.dropdown-content::-webkit-scrollbar-thumb {
+  background: #888888;
+  border-radius: 4px;
+}
+.dropdown-content::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 10px 14px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #dddddd;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+/* 🧭 Header & Navigation */
+header {
+  background-color: #b5b71c;
+  padding: 20px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-container {
+  display: flex;
+  justify-content: right;
+  margin-right: 50px;
+  gap: 50px;
+}
+
+.header-container a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.header-container a:hover {
+  color: #ffe082;
+  transform: scale(1.1);
+}
+/*add to cart section*/
+cart {
+  position: relative;
+  cursor: pointer;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#cart-count {
+  background: #ff5722;
+  color: silver;
+  padding: 3px 7px;
+  border-radius: 50%;
+  font-size: 12px;
+  vertical-align: top;
+  margin-left: 3px;
+}
+/* 🛒 Cart Panel Styles */
+.cart-panel {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100%;
+  background: #fff;
+  border-left: 3px solid #b71c1c;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+  transition: right 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  z-index: 2000; /* ⬆️ Higher than header */
+}
+.cart-panel {
+  padding-top: 70px; /* adjust to match header height */
+}
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: none;
+  z-index: 1999; /* slightly below cart-panel */
+}
+
+
+.cart-panel.open {
+  right: 0; /* slide in */
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-items {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-top: 15px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-footer {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 10px;
+  background: #ff5722;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  z-index: 998;
+}
+
+.overlay.show {
+  display: block;
+}
+
+.cart-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.cart-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.cart-controls button {
+  background: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.cart-controls button:hover {
+  background: #e64a19;
+}
+
+.cart-controls span {
+  font-weight: bold;
+  min-width: 25px;
+  text-align: center;
+}
+
+.remove-btn {
+  background: crimson !important;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+  background: #b71c1c !important;
+}
+
+
+/* 🏠 Home Section */
+.home-container {
+  position: relative;
+  height: 150vh;
+  overflow: hidden;
+}
+
+.home-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(70%);
+  transition: transform 10s ease;
+}
+
+.home-container img:hover {
+  transform: scale(1.1);
+}
+
+.home-container::after {
+  content: "Welcome to Our Restaurant!";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff3e0;
+  font-size: 3em;
+  font-weight: 700;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+  animation: fadeIn 2s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.background img {
+  width: 100%;
+  height: 1500px;
+  object-fit: cover;
+  filter: brightness(60%);
+}
+
+/* 🍴 Menu Sections */
+.menu {
+  padding: 60px 10%;
+  background: linear-gradient(to bottom right, #fffaf3, #fff3e0);
+  border-radius: 20px;
+  margin: 40px auto;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: 0.3s ease;
+}
+
+.menu:hover {
+  transform: scale(1.02);
+}
+
+.menu h2 {
+  text-align: center;
+  font-size: 2.2em;
+  color: #b71c1c;
+  margin-bottom: 30px;
+  border-bottom: 3px solid #b71c1c;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* 🥗 Menu Grid */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.product {
+  background-color: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.product img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.product h3 {
+  font-size: 1.3em;
+  color: #444;
+  margin: 15px 0 5px;
+}
+
+.product p {
+  font-weight: bold;
+  color: #b71c1c;
+  margin-bottom: 15px;
+}
+button{
+  justify-content:center;
+}
+.button{
+    color: rgb(252, 252, 252);
+    padding: 15px 32px;
+    
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    border-width: medium;
+    border-style: hidden;
+    background-color: chartreuse;
+}
+.button {
+  
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out; /* Smooth transition for scaling */
+}
+
+.button:active {
+  transform: scale(0.95); /* Scales the button down to 95% of its original size */
+}
+.buttonb{
+    color: rgb(252, 252, 252);
+    padding: 15px 32px;
+    
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    border-width: medium;
+    border-style: hidden;
+    background-color: rgb(93, 130, 242);
+}
+.buttonb{
+  
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out; /* Smooth transition for scaling */
+}
+
+.buttonb:active {
+  transform: scale(0.95); /* Scales the button down to 95% of its original size */
+}
+
+/* ℹ️ Info Sections (About, Contact) */
+.info-section {
+  text-align: center;
+  padding: 60px 10%;
+  background-color: #fff8e1;
+  border-top: 2px solid #b71c1c;
+}
+
+.info-section h2 {
+  color: #b71c1c;
+  font-size: 2em;
+  margin-bottom: 20px;
+  border-bottom: 3px solid #b71c1c;
+  display: inline-block;
+}
+
+.info-section p {
+  font-size: 1.5em;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.info-section img{
+  width: 600px;
+  height: 450px;
+  object-fit: cover;
+  margin-top: 20px;
+  
+}
+
+/* ===== 🧩 Info Section ===== */
+.info-section {
+  max-width: 100%;
+  padding: 40px 10%;
+  text-align: center;
+  color: #333;
+}
+
+.info-section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.info-section p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.info-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* Make the Google Map iframe responsive */
+.info-section iframe {
+  width: 100%;
+  height: 350px;
+  border: none;
+  border-radius: 8px;
+  max-width: 100%;
+}
+
+/* Make image responsive */
+.restaurant-logo {
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+/* ===== 📱 Mobile view ===== */
+@media (max-width: 768px) {
+  .info-section {
+    padding: 20px 5%;
+  }
+
+  .info-section h2 {
+    font-size: 1.6rem;
+  }
+
+  .info-section iframe {
+    height: 250px; /* smaller height for mobile */
+  }
+
+  .info-section p {
+    font-size: 0.95rem;
+  }
+}
+
+/* =============================
+   🔴 Desktop / Default Styles
+   ============================= */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #b71c1c;
+  color: white;
+  padding: 15px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+/* Nav layout */
+nav ul {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #ffe082;
+}
+
+/* Dropdown (Desktop) */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: orange;
+  min-width: 220px;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.dropdown-content a {
+  color:  #fff;
+  padding: 10px 14px;
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background: #ddd;
+}
+
+/* Hover dropdown for desktop */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Hide hamburger on desktop */
+.menu-toggle {
+  display: none;
+}
+
+/* =============================
+   📱 Mobile / Tablet
+   ============================= */
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+  }
+
+  .menu-toggle {
+    display: block;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #b71c1c;
+    padding: 1rem 0;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  nav ul li {
+    text-align: center;
+  }
+
+  /* Dropdown (Mobile): scrollable */
+  .dropdown-content {
+    position: relative;
+    max-height: 200px; /* keeps scrollbar visible */
+    overflow-y: auto;
+    background: #d32f2f;
+    box-shadow: none;
+  }
+
+  .dropdown-content::-webkit-scrollbar {
+    width: 8px;
+  }
+  .dropdown-content::-webkit-scrollbar-thumb {
+    background: #999;
+    border-radius: 4px;
+  }
+
+  /* Disable hover and use JS open class instead */
+  .dropdown:hover .dropdown-content {
+    display: none;
+  }
+  .dropdown.open .dropdown-content {
+    display: block;
+  }
+}
+
+/* ==========================
+   🛒 CART PANEL BASE STYLES
+   ========================== */
+.cart-panel {
+  position: fixed;
+  top: 0;
+  right: -400px; /* Hidden offscreen */
+  width: 400px;
+  height: 100%;
+  background: #fff;
+  border-left: 3px solid #b71c1c;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+  transition: right 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+}
+
+.cart-panel.open {
+  right: 0;
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #b71c1c;
+  color: white;
+  padding: 15px 20px;
+}
+
+.cart-header h3 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.close-cart {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.cart-items {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 15px 20px;
+}
+
+.cart-item {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.cart-footer {
+  padding: 15px 20px;
+  border-top: 1px solid #ddd;
+  font-weight: bold;
+}
+
+.checkout-btn {
+  width: 100%;
+  background: #ff5722;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  margin-top: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.checkout-btn:hover {
+  background: #e64a19;
+}
+
+/* 🔲 Overlay (dim background) */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: none;
+  z-index: 998;
+}
+
+.overlay.show {
+  display: block;
+}
+
+/* ==========================
+   📱 RESPONSIVE CART DESIGN
+   ========================== */
+@media (max-width: 768px) {
+  .cart-panel {
+    width: 100%; /* Full width on mobile */
+    right: -100%;
+    border-left: none;
+    border-top: 4px solid #b71c1c;
+  }
+
+  .cart-panel.open {
+    right: 0;
+  }
+
+  .cart-header {
+    padding: 15px;
+    font-size: 1.2rem;
+  }
+
+  .cart-items {
+    padding: 10px 15px;
+  }
+
+  .checkout-btn {
+    font-size: 1rem;
+    padding: 14px;
+  }
+}
+
+/* 🧩 Optional: Smooth Scroll for Items */
+.cart-items::-webkit-scrollbar {
+  width: 8px;
+}
+
+.cart-items::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.overlay.show {
+  display: block;
+  opacity: 1;
+}
