@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DRE Computer Center</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="menu.css">
+  
+  
+</head>
+<body id="top">
+
+  <!--Header Section-->
+  <header class="navbar">
+    <div class="logo">
+      <span class="logo-icon">💻</span>
+      <span class="highlight">DRE Computer <span class="extra">Center</span></span>
+    </div>
+
+    <div class="menu-toggle" id="mobile-menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+
+    <nav>
+      <ul id="nav-list">
+        <li><a href="#home">Home</a></li>
+        <li class="dropdown" id="products-dropdown">
+          <a href="#products" class="dropbtn">Products</a>
+          <div class="dropdown-content">
+            <a href="#laptops">Laptops</a>
+            <a href="#computer-sets">Computer Sets</a>
+          </div>
+        </li>
+        <li class="dropdown" id="about-dropdown">
+          <a href="#about" class="dropbtn">About</a>
+          <div class="dropdown-content">
+            <a href="#about-section">About Us</a>
+            <a href="#services">Our Services</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#location">Location</a>
+          </div>
+        </li>
+        <li class="dropdown" id="contact-dropdown">
+          <a href="#contact" class="dropbtn">Contact</a>
+          <div class="dropdown-content">
+            <a href="#contact-form">Contact Us</a>
+            <a href="#visit">Visit Us</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- 🌐 Popup Buttons -->
+    <div class="auth-buttons">
+      <!-- Search -->
+      <input type="search" id="product-search" placeholder="Search products..." aria-label="Search products">
+      <a href="#signup" class="signup-btn">Sign Up</a>
+      <a href="#login" class="login-btn">Log In</a>
+
+      <!-- Cart Button -->
+      <!-- Wishlist Button -->
+      <div class="wishlist-btn" id="wishlist-btn" title="Favorites">
+        <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Wishlist">
+        <span class="wish-count" id="wish-count">0</span>
+      </div>
+
+      <!-- Cart Button -->
+      <div class="cart-btn" id="cart-btn">
+        <img src="https://cdn-icons-png.flaticon.com/512/833/833314.png" alt="Cart">
+        <span id="cart-count">0</span>
+      </div>
+    </div>
+  </header>
+
+  
+
+  <!-- 💚 Sign Up Modal -->
+  <div id="signup" class="modal">
+    <div class="modal-content">
+      <h2>Create Account</h2>
+      <form>
+        <input type="text" placeholder="Full Name" required><br>
+        <input type="email" placeholder="Email" required><br>
+        <input type="password" placeholder="Password" required><br>
+        <button type="submit" class="signup-btn-modal">Sign Up</button>
+        <p>Already have an account? <a href="#login">Log In</a></p>
+      </form>
+      <a href="#" class="close">Close</a>
+    </div>
+  </div>
+
+  <!-- 🔵 Login Modal -->
+  <div id="login" class="modal">
+    <div class="modal-content">
+      <h2>Welcome Back</h2>
+      <form>
+        <input type="email" placeholder="Email" required><br>
+        <input type="password" placeholder="Password" required><br>
+        <p><a href="#forgot">Forgot Password?</a></p>
+        <button type="submit" class="login-btn-modal">Log In</button>
+        <p>Don’t have an account? <a href="#signup">Sign Up</a></p>
+      </form>
+      <a href="#" class="close">Close</a>
+    </div>
+  </div>
+
+  <!-- 🔐 Forgot Password Modal -->
+  <div id="forgot" class="modal">
+    <div class="modal-content">
+      <h2>Reset Password</h2>
+      <form>
+        <input type="email" placeholder="Enter your email" required><br>
+        <button type="submit" class="login-btn-modal">Send Reset Link</button>
+      </form>
+      <a href="#login" class="close">Back to Login</a>
+    </div>
+  </div>
+
+  <!-- 🛒 Cart Modal -->
+  <div id="cart" class="modal">
+    <div class="modal-content">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <a href="#top" class="close">Close</a>
+      </div>
+      <div class="cart-items" id="cart-items">
+        <!-- items populated by JS -->
+      </div>
+      <div class="cart-footer">
+        <div class="total" id="cart-total">Total: ₱0</div>
+        <div style="display:flex;gap:8px;">
+          <button id="clear-cart-btn" class="checkout-btn" style="background:#e74c3c;">Clear Cart</button>
+          <button id="checkout-btn" class="checkout-btn">Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🛒 Cart Preview Overlay -->
+  <div id="cart-preview" class="cart-preview-overlay">
+    <div class="cart-preview-content">
+      <div class="cart-preview-header">
+        <h3>Your Shopping Cart</h3>
+        <button class="close-preview">×</button>
+      </div>
+      <div id="cart-preview-items" class="cart-preview-items">
+        <!-- Cart items will appear here -->
+      </div>
+      <div class="cart-preview-footer">
+        <p id="cart-preview-total" class="cart-preview-total">Total: ₱0</p>
+        <div class="cart-preview-buttons">
+          <button id="continue-shopping" class="continue-shopping-btn">Continue Shopping</button>
+          <button class="view-cart-btn" onclick="document.getElementById('cart').style.display='block';">Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 💚 Wishlist Modal -->
+  <div id="wishlist" class="modal">
+    <div class="modal-content">
+      <div class="cart-header">
+        <h2>Your Favorites</h2>
+        <a href="#top" class="close">Close</a>
+      </div>
+      <div class="cart-items" id="wishlist-items">
+        <!-- favorites populated by JS -->
+      </div>
+      <div class="cart-footer">
+        <div style="display:flex;gap:8px;">
+          <button id="clear-wishlist-btn" class="checkout-btn" style="background:#e74c3c;">Clear Favorites</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+    
+
+
+  <!--Hero Section-->
+  <section id="home" class="hero">
+    <video class="video-background" autoplay muted loop playsinline>
+      <source src="DREComputer.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-content">
+      <img src="dre.jpg" alt="Logo">
+      <h1>DRE Computer Center</h1>
+      <p>We Make IT Easy</p>
+    </div>
+  </section>
+
+
+  <!-- Menu Section -->
+<section id="laptops" class="menu">
+  <h2>💻 Laptops</h2>
+
+  <div class="products1">
+    <div class="menu-grid">
+
+      <div class="product1">
+        <img src="Product1.jpg" alt="LENOVO"> 
+        <h3>LENOVO SLIM IPS3 <br> 14BR8 82XL0071PH</h3>
+        <p class="price">₱45,995</p> 
+       
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+
+      </div>
+     <div class="product1">
+        <img src="Product2.jpg" alt="ASUS">
+        <h3>ASUS <br> X1605ZA-MB065WS</h3>
+        <p class="price">₱34,995</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product3.jpg" alt="">
+        <h3>ACER ASPIRE LITE <br> AL14-51M-57H1</h3>
+        <p class="price">₱35,999</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product4.jpg" alt="">
+        <h3>ACER ASPIRE <br> 15 A15-51M56E2</h3>
+        <p class="price">₱39,999</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product5.jpg" alt="">
+        <h3>LENOVO SLIM IPS3 15ABR8 82XM00FUPH</h3>
+        <p class="price">₱32,995</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product6.jpg" alt="">
+        <h3>ASUS <br> X1605A-MB095W</h3>
+        <p class="price">₱22,999</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product7.jpg" alt="">
+        <h3>ASUS  TUF F15 FX5077C4-HN081W</h3>
+        <p class="price">₱54,995</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product8.jpg" alt="">
+        <h3>ASUS TUF F15 FX506HF-HN308W</h3>
+        <p class="price">₱53,000</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product9.jpg" alt="">
+        <h3>LENOVO SLIM IPS3 15IRH8 83EM009CPH</h3>
+        <p class="price">₱51,995</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product10.jpg" alt="">
+        <h3>ASUS  E1404VA-NK 766WSM</h3>
+        <p class="price">₱34,995</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product11.jpg" alt="">
+        <h3>ACER ASPIRE G 15 AG15-51P-53K1</h3>
+        <p class="price">₱35,999</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product12.jpg" alt="">
+        <h3>ASUS <br> E1404GA-NK350WSM</h3>
+        <p class="price">₱22,999</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product13.jpg" alt="">
+        <h3>ACER ASPIRE LITE 14 AL14-32P-392P</h3>
+        <p class="price">₱26,999</p>
+       <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product14.jpg" alt="">
+        <h3>ACER ASPIRE LITE 14 AL14-32P-C5PN</h3>
+        <p class="price">₱23,999</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product15.jpg" alt="">
+        <h3> NINGMEI CLR201 SLIM LAPTOP</h3>
+        <p class="price">₱13,999</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product16.jpg" alt="">
+        <h3>NINGMEI CLR201 SLIM LAPTOP</h3>
+        <p class="price">₱14,999</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+
+     <div class="product1">
+        <img src="Product17.jpg" alt="">  
+        <h3>TOSHIBA DYNABOOK R73</h3>  
+        <p class="price">₱13,499</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product18.jpg" alt="">
+        <h3>DELL LATITUDE 3560</h3>
+        <p class="price">₱8,795</p>
+       <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product19.jpg" alt="">
+        <h3>DELL LATITUDE 7390</h3>
+        <p class="price">₱14,999</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product20.jpg" alt="">
+        <h3>DELL VOSTRO 15 3568</h3>
+        <p class="price">₱10,499</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product21.jpg" alt="">
+        <h3>DELL VOSTRO 15 3568</h3>
+        <p class="price">₱11,299</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product22.jpg" alt="">
+        <h3> HP PROBOOK 450 G3</h3>
+        <p class="price">₱13,499</p>
+       <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product23.jpg" alt="">
+        <h3>LENOVO THINKPAD E570</h3>
+        <p class="price">₱9,495</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product24.jpg" alt="">
+        <h3>LENOVO THINKPAD L570</h3>
+        <p class="price">₱8,995</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product25.jpg" alt="">
+        <h3>LENOVO THINKPAD L570 </h3>
+        <p class="price">₱9,995</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product26.jpg" alt="">
+        <h3>TOSHIBA DYNABOOK B35</h3>
+        <p class="price">₱7,990</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+
+     <div class="product1">
+        <img src="Product27.jpg" alt="">
+        <h3> TOSHIBA DYNABOOK B65</h3>
+        <p class="price">₱11,699</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+     <div class="product1">
+        <img src="Product28.jpg" alt="">
+        <h3>TOSHIBA DYNABOOK B65</h3>
+        <p class="price">₱10,499</p>
+        <div class="button-group">
+         <button class="add-to-cart">🛒 Add to Cart</button>
+         <button class="add-to-favorite">❤️ Add to Favorites</button>
+         <a href="Product1.html" class="buy-btn">View Item</a>
+       </div>
+     </div>
+
+
+    </div>
+  </div>
+</section>   
+
+
+
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="about-content">
+      <video class="about-video" autoplay muted loop playsinline>
+        <source src="Logo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
+      <div class="about-text">
+        <h1>DRE</h1>
+        <h2>Computer Center</h2>
+        <p>
+          Dre Computer Center is your go-to destination for all things tech. Established in 2012,
+          we have been committed to providing top-notch computer products and services to our community.
+          Our mission is to make technology accessible and affordable for everyone.
+        </p>
+        <p>
+          At Dre Computer Center, we pride ourselves on our extensive selection of laptops, desktops,
+          accessories, and peripherals from leading brands. Our knowledgeable staff is always ready to assist you
+          in finding the perfect device to suit your needs and budget.
+        </p>
+        <p>
+          Whether you're a student, professional, or tech enthusiast, we have something for you.
+          From the latest laptops and accessories to expert repair services,
+          Dre Computer Center is here to help you stay connected and productive.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <!-- 🛒 Checkout Modal -->
+<div id="checkout-modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Checkout Summary</h2>
+    <div id="checkout-items"></div>
+    <h3 id="checkout-total" style="margin-top: 15px;">Total: ₱0</h3>
+    <div style="text-align: right; margin-top: 20px;">
+      <button id="confirm-order-btn" class="confirm-btn">Confirm Order</button>
+    </div>
+    <div style="text-align: right; margin-top: 10px;">
+      <button id="clear-cart-btn">Clear Cart</button>
+      <button id="checkout-btn" class="confirm-btn" style="margin-left: 10px;">Checkout</button>
+   </div>
+
+  </div>
+</div>
+
+  <script src="dre.js"></script>
+
+</body>
+</html>
